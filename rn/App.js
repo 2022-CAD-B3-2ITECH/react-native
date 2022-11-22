@@ -1,13 +1,18 @@
 import React from 'react';
-import Jour1 from "./jour1";
-import {Button} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View
+} from "react-native"
+import Button from "./components/Button";
 
 const App = () => {
   return (
-    <>
-      <Jour1 test="hello world" />
-      <Button onPress={() => console.log("hello")} title="test" />
-    </>
+    <SafeAreaView style={{flex: 1}}>
+      <Button style={{marginHorizontal: 10}} >
+        hello world
+      </Button>
+    </SafeAreaView>
   )
 };
 
