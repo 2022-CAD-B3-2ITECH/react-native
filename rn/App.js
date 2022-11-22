@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -16,13 +16,15 @@ const App = () => {
     "comment3"
   ])
 
-  console.log(name);
+  useEffect(() => {
+    setName("");
+  }, [comments])
 
   return (
     <SafeAreaView style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
       {comments.map((item, id) => <Text key={id}>{item}</Text>)}
       <TextInput value={name} onChangeText={setName} style={{width: "100%"}}/>
-      <Button>Envoyer</Button>
+      <Button onPress={() => setComments([...comments, name])}>Envoyer</Button>
     </SafeAreaView>
   )
 };
