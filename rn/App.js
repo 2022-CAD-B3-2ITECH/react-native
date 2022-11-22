@@ -3,28 +3,22 @@ import {
   SafeAreaView,
   Text,
   View
-} from "react-native"
-import Button from "./components/Button";
-import TextInput from "./components/TextInput";
+} from "react-native";
+import moment from "moment";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState("");
-  const [comments, setComments] = useState([
-    "comment1",
-    "comment2",
-    "comment3"
-  ])
+  const [time, setTime] = useState(moment().format("hh:mm:ss"));
 
   useEffect(() => {
-    setName("");
-  }, [comments])
+    let id = setInterval(() => {
+      setTime(moment().format("hh:mm:ss"));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [])
 
   return (
     <SafeAreaView style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-      {comments.map((item, id) => <Text key={id}>{item}</Text>)}
-      <TextInput value={name} onChangeText={setName} style={{width: "100%"}}/>
-      <Button onPress={() => setComments([...comments, name])}>Envoyer</Button>
+      <Text style={{fontSize: 48}}>{time}</Text>
     </SafeAreaView>
   )
 };
