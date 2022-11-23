@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
+    "@react-hooks-library/core": "^0.4.0",
     "@react-native-community/eslint-config": "^2.0.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.15",
