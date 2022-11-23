@@ -16,7 +16,7 @@ const useMeteo = () => {
     (async () => {
       //call api
     })()
-  })
+  }, [])
 }
 
 export default useMeteo;
