@@ -1,33 +1,28 @@
-import React, {useState, useEffect} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  Text,
-  View
-} from "react-native";
-import moment from "moment";
-import useCounter from './hooks/useCounter';
-import useTimer from './hooks/useTimer';
-import useGet from "./hooks/useGet";
+import React from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import Home from "./pages/Home";
+import Equipe from "./pages/Equipe";
+
+const Stack = createBottomTabNavigator();
 
 const App = () => {
-  const [data, loading] = useGet("https://api.open-meteo.com/v1/forecast?latitude=44.837788&longitude=-0.579180&daily=temperature_2m_max,temperature_2m_min&timezone=GMT", null);
-  const {count, add, substract} = useCounter(0);
 
-  console.log(data);
-
-  if (loading || data === null) return <Text>Loading...</Text>;
   return (
-    <SafeAreaView style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-      <Text style={{fontSize: 48}}>{count}</Text>
-      <View style={{flexDirection: "row"}}>
-        <Button title="-" onPress={substract} />
-        <Button title="+" onPress={add} />
-      </View>
-      {loading || data === null ? <Text>Loading...</Text> : (
-        <Text style={{fontSize: 48}}>{data?.daily?.temperature_2m_max[0]}</Text>
-      )}
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={Home} 
+                      options={{
+                        tabBarIcon: ({color, size}) => (<MaterialCommunityIcons name="home" color={color} size={size} />)
+                      }}/>
+        <Stack.Screen name="Equipe" component={Equipe}
+                      options={{
+                        tabBarIcon: ({color, size}) => (<MaterialCommunityIcons name="account-group" color={color} size={size} />)
+                      }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 };
 
