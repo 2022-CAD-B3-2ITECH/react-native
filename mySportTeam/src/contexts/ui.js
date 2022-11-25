@@ -3,6 +3,7 @@ import {createContext, useState, useContext}  from "react";
 const Context = createContext();
 
 const Default = {
+  theme: "light",
 }
 
 const Provider = ({children}) => {
